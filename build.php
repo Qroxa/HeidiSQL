@@ -113,7 +113,7 @@ function execCommand(string $command, bool $returnOutput=false): array|bool
     $output = [];
     $resultCode = 0;
     dumpMessage(getcwd().'>> '.$command);
-    exec($command.' 2>&1', $output, $resultCode);
+    exec(escapeshellarg($command).' 2>&1', $output, $resultCode);
     if(!$returnOutput) {
         foreach ($output as $oline) {
             dumpMessage('# ' . ($resultCode ? 'Error: ' : '') . $oline);
